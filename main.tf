@@ -6,6 +6,32 @@ resource "ibm_is_vpc" "turbonomic-vpc" {
   default_routing_table_name = "dal-${var.client_name}-route"
 }
 
+resource "ibm_is_security_group" "turbonomic-sg" {
+  name = "dal-${var.client_name}-vpc-turbonomic-sg"
+  vpc  = ibm_is_vpc.turbonomic-vpc.id
+  resource_group = "7091499c38984a33a077f69c422dfd1a"
+}
+
+resource "ibm_is_security_group_rule" "turbonomic-sg-tcp-22" {
+  group     = ibm_is_security_group.turbonomic-sg.id
+  direction = "inbound"
+  remote    = "0.0.0.0/0"
+  tcp {
+    port_min = 22
+    port_max = 22
+  }
+}
+
+resource "ibm_is_security_group_rule" "turbonomic-sg-tcp-443" {
+  group     = ibm_is_security_group.turbonomic-sg.id
+  direction = "inbound"
+  remote    = "0.0.0.0/0"
+  tcp {
+    port_min = 443
+    port_max = 443
+  }
+}
+
 resource "ibm_is_subnet" "turbonomic-subnet" {
   name            = "turbonomic-subnet"
   vpc             = ibm_is_vpc.turbonomic-vpc.id
@@ -29,6 +55,7 @@ resource "ibm_is_instance" "turbonomic" {
     subnet = ibm_is_subnet.turbonomic-subnet.id
 	primary_ipv4_address = "10.240.0.6"
     allow_ip_spoofing = true
+	security_groups = [ibm_is_security_group.turbonomic-sg.id]
   }
 
   vpc  = ibm_is_vpc.turbonomic-vpc.id
