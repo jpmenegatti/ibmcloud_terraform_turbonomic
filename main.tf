@@ -87,8 +87,6 @@ resource "ibm_is_instance_volume_attachment" "turbonomic-data" {
   delete_volume_on_instance_delete   = true
   volume_name                        = "turbonomic-data"
   
-  resource_group = "7091499c38984a33a077f69c422dfd1a"
-
   //User can configure timeouts
   timeouts {
     create = "15m"
