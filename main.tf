@@ -32,9 +32,9 @@ resource "ibm_is_security_group_rule" "turbonomic-sg-tcp-443" {
   }
 }
 
-resource "ibm_is_security_group_rule" "turbonomic-sg-egress" {
+resource "ibm_is_security_group_rule" "turbonomic-sg-outbound" {
   group     = ibm_is_security_group.turbonomic-sg.id
-  direction = "egress"
+  direction = "outbound"
   remote    = "0.0.0.0/0"
 }
 
