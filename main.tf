@@ -77,20 +77,20 @@ resource "ibm_is_floating_ip" "turbonomic-floating-ip" {
   resource_group = "7091499c38984a33a077f69c422dfd1a"
 }
 
-resource "ibm_is_instance_volume_attachment" "turbonomic-data" {
-  instance = ibm_is_instance.turbonomic.id
+//resource "ibm_is_instance_volume_attachment" "turbonomic-data" {
+//  instance = ibm_is_instance.turbonomic.id
 
-  name                               = "turbonomic-data"
-  profile                            = "general-purpose"
-  capacity                           = "20"
-  delete_volume_on_attachment_delete = true
-  delete_volume_on_instance_delete   = true
-  volume_name                        = "turbonomic-data"
+//  name                               = "turbonomic-data"
+//  profile                            = "general-purpose"
+//  capacity                           = "20"
+//  delete_volume_on_attachment_delete = true
+//  delete_volume_on_instance_delete   = true
+//  volume_name                        = "turbonomic-data"
   
-  //User can configure timeouts
-  timeouts {
-    create = "15m"
-    update = "15m"
-    delete = "15m"
-  }
-}
+//  //User can configure timeouts
+//  timeouts {
+//    create = "15m"
+//    update = "15m"
+//    delete = "15m"
+//  }
+//}
