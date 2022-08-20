@@ -32,6 +32,14 @@ resource "ibm_is_security_group_rule" "turbonomic-sg-tcp-443" {
   }
 }
 
+resource "ibm_is_security_group_rule" "turbonomic-sg-egress" {
+  group     = ibm_is_security_group.turbonomic-sg.id
+  direction = "egress"
+  remote    = "0.0.0.0/0"
+  all {
+  }
+}
+
 resource "ibm_is_subnet" "turbonomic-subnet" {
   name            = "turbonomic-subnet"
   vpc             = ibm_is_vpc.turbonomic-vpc.id
