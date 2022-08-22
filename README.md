@@ -1,14 +1,12 @@
-# IBM VSI (virtual machine) example
+# Install Turbonomic at IBM Cloud VPC Virtual Machine
 
-This example shows how to create virtual machines on IBM Cloud. 
-This is a minimal configuration to demonstrate the Terraform lifecycle of apply and destroy. 
+Terraform script to be used with IBM Cloud Schematics Workspaces
 
-VSI is configured with private network nic only to protect from threats on the public Internet. 
+Variables:
+- turbonomic_image_id: ID of Turbonomic custom image for VPC (default "r006-47125f1b-b95d-47f5-8e4c-1395254549ce" = turbonomic-t8c-8-4-6)
+- client_name: client name used for new VPC name and Turbonomic virtual machine name (default "poc")
 
-
-To run, configure your IBM Cloud provider
-
-Running the example
+CLI details:
 
 For planning phase
 
