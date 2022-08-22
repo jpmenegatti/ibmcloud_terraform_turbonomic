@@ -28,4 +28,4 @@ terraform destroy
 
 ## Installation
 
-To install and configure Turbonomic after virtual machine deployment see [Turbonomic Ansible](https://github.com/jpmenegatti/ibmcloud_act_turbonomic)
+To install and configure Turbonomic after virtual machine deployment see [Turbonomic Instalation](https://github.com/jpmenegatti/ibmcloud_act_turbonomic)
