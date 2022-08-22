@@ -1,6 +1,6 @@
 resource "ibm_is_vpc" "turbonomic-vpc" {
   name = "dal-${var.client_name}-vpc"
-  resource_group = "7091499c38984a33a077f69c422dfd1a"
+  resource_group = var.resource_group_id
   default_network_acl_name = "dal-${var.client_name}-vpc-default-acl"
   default_security_group_name = "dal-${var.client_name}-vpc-default-sg"
   default_routing_table_name = "dal-${var.client_name}-route"
@@ -9,7 +9,7 @@ resource "ibm_is_vpc" "turbonomic-vpc" {
 resource "ibm_is_security_group" "turbonomic-sg" {
   name = "dal-${var.client_name}-vpc-turbonomic-sg"
   vpc  = ibm_is_vpc.turbonomic-vpc.id
-  resource_group = "7091499c38984a33a077f69c422dfd1a"
+  resource_group = var.resource_group_id
 }
 
 resource "ibm_is_security_group_rule" "turbonomic-sg-tcp-22" {
@@ -43,7 +43,7 @@ resource "ibm_is_subnet" "turbonomic-subnet" {
   vpc             = ibm_is_vpc.turbonomic-vpc.id
   zone            = "us-south-1"
   ipv4_cidr_block = "10.240.0.0/24"
-  resource_group = "7091499c38984a33a077f69c422dfd1a"
+  resource_group = var.resource_group_id
 }
 
 resource "ibm_is_instance" "turbonomic" {
@@ -67,7 +67,7 @@ resource "ibm_is_instance" "turbonomic" {
   vpc  = ibm_is_vpc.turbonomic-vpc.id
   zone = "us-south-1"
   keys = ["r006-1d3b8fca-3eda-4a63-9f3f-7a4dad8057dd"]
-  resource_group = "7091499c38984a33a077f69c422dfd1a"
+  resource_group = var.resource_group_id
 
   //User can configure timeouts
   timeouts {
@@ -80,7 +80,7 @@ resource "ibm_is_instance" "turbonomic" {
 resource "ibm_is_floating_ip" "turbonomic-floating-ip" {
   name   = "turbonomic-floating-ip"
   target = ibm_is_instance.turbonomic.primary_network_interface[0].id
-  resource_group = "7091499c38984a33a077f69c422dfd1a"
+  resource_group = var.resource_group_id
 }
 
 //resource "ibm_is_instance_volume_attachment" "turbonomic-data" {
