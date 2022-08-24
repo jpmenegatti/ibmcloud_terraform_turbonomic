@@ -59,7 +59,7 @@ resource "ibm_is_instance" "turbonomic" {
   primary_network_interface {
     name = "eth0"
     subnet = ibm_is_subnet.turbonomic-subnet.id
-	primary_ipv4_address = "10.240.0.6"
+	primary_ip = "10.240.0.6"
     allow_ip_spoofing = true
 	security_groups = [ibm_is_security_group.turbonomic-sg.id]
   }
