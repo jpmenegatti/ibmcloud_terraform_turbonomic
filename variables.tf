@@ -1,5 +1,5 @@
 variable "turbonomic_image_id" {
-  default = "r006-47125f1b-b95d-47f5-8e4c-1395254549ce"
+  default = "r006-7eded0f2-1e07-41ef-8aff-af853eaf769c"
 }
 
 variable "resource_group_id" {
